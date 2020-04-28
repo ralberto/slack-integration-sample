@@ -2,13 +2,12 @@ var express = require("express");
 var bodyParser = require('body-parser');
 var app = express();
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.json());
 
 app.use(express.static('public'))
 
 app.post("/slack/v1/events", function(req, res) {
+  
     res.status(200);
     var payload = {
         "challenge": req.body.body.challenge
