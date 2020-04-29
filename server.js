@@ -8,16 +8,16 @@ app.use(express.static('public'))
 
 app.post("/slack/v1/events", function(req, res) {
   
-    
+    res.status(200);
     var payload = {
         "challenge": req.body.body.challenge
     }
     res.json(payload);
-    res.sendStatus(200);
-    console.log("=========================================================")
-    console.log("Request: %s",req.body.body)
-    console.log("=========================================================")
-    console.log("Response: Status %s",res)
+    
+    console.log("=========================================================");
+    console.log("Request: %s",req.body.body);
+    console.log("=========================================================");
+    console.log("Response: %s",res.json);
 });
 
 // set the port of our application
