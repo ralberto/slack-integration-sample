@@ -1,5 +1,5 @@
 const { WebClient } = require('@slack/web-api');
-const slackToken = "xoxb-1078425763427-1090859023793-nchk5CjAb2RlPB2JsIWDIk8r";
+const slackToken = "xoxb-1078425763427-1090859023793-kzo5fMGqAneOM1kJfJhlQMyn";
 
 var express = require("express");
 var bodyParser = require('body-parser');
