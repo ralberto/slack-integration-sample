@@ -14,7 +14,7 @@ async function setSlackHome(userId){
 
   try {
     // Use the `chat.postMessage` method to send a message from this app
-    const result;
+    const result="";
     
     if(prob<5 ) {
       result = slack.views.publish({
