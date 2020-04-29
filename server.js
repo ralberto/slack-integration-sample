@@ -9,7 +9,7 @@ var app = express();
 function setSlackHome(userId){
   // Create a new instance of the WebClient class with the token read from your environment variable
   const slack = new WebClient(slackToken);
-
+  const currentTime = new Date().toTimeString();
   
 
   try {
@@ -23,7 +23,7 @@ function setSlackHome(userId){
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": "*CeeCee Bass*\nProduct Manager"
+              "text": `*CeeCee Bass*\nProduct Manager @ ${  currentTime  }`
             },
             "accessory": {
               "type": "image",
@@ -126,26 +126,6 @@ var server = app.listen(port, function() {
 
   console.log("Slack Integration sample app listening at http://%s:%s", host, port);
 });
-
-const currentTime = new Date().toTimeString();
-
-(async () => {
-
-  try {
-    // Use the `chat.postMessage` method to send a message from this app
-    await web.chat.postMessage({
-      channel: '#general',
-      text: `The current time is ${currentTime}`,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-
-  console.log('Message posted!');
-})();
-
-
-
 
 /*
 '{                \
