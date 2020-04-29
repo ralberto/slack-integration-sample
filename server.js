@@ -16,7 +16,7 @@ app.post("/slack/v1/events", function(req, res) {
     switch (req.body.type){
       case 'url_verification':
         console.log("Event: url_verification");
-        var payload = {
+        let payload = {
           "challenge": req.body.challenge
         }
         res.json(payload);
@@ -28,9 +28,216 @@ app.post("/slack/v1/events", function(req, res) {
           case 'app_home_opened':
             console.log("Event: event_callback==>app_home_opened");
             res.status(200);
+            const payload = '{                \
+              "type": "home",                 \
+              "blocks": [                     \
+                {\
+                  "type": "section",\
+                  "text": {\
+                    "type": "mrkdwn",\
+                    "text": "*CeeCee Bass*\nProduct Manager"\
+                  },\
+                  "accessory": {\
+                    "type": "image",\
+                    "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",\
+                    "alt_text": "CeeCee Bass"\
+                  }\
+                },\
+                {\
+                  "type": "context",\
+                  "elements": [\
+                    {\
+                      "type": "image",\
+                      "image_url": "https://www.yourccsteam.com/wp-content/uploads/2019/11/inbound.png",\
+                      "alt_text": "Answered"\
+                    },\
+                    {\
+                      "type": "plain_text",\
+                      "emoji": false,\
+                      "text": "Today 3:33 pm, 5m32s"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "actions",\
+                  "elements": [\
+                    {\
+                      "type": "button",\
+                      "text": {\
+                        "type": "plain_text",\
+                        "text": "Call",\
+                        "emoji": true\
+                      },\
+                      "style": "primary",\
+                      "value": "approve"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "divider"\
+                },\
+                {\
+                  "type": "section",\
+                  "text": {\
+                    "type": "mrkdwn",\
+                    "text": "*CeeCee Bass*\nProduct Manager"\
+                  },\
+                  "accessory": {\
+                    "type": "image",\
+                    "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",\
+                    "alt_text": "CeeCee Bass"\
+                  }\
+                },\
+                {\
+                  "type": "context",\
+                  "elements": [\
+                    {\
+                      "type": "image",\
+                      "image_url": "https://png.pngtree.com/svg/20170711/voicemail_384820.png",\
+                      "alt_text": "Answered"\
+                    },\
+                    {\
+                      "type": "plain_text",\
+                      "emoji": false,\
+                      "text": "Yesterday, 2m15s"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "actions",\
+                  "elements": [\
+                    {\
+                      "type": "button",\
+                      "text": {\
+                        "type": "plain_text",\
+                        "text": "Call",\
+                        "emoji": true\
+                      },\
+                      "style": "primary",\
+                      "value": "approve"\
+                    },\
+                            {\
+                      "type": "button",\
+                      "text": {\
+                        "type": "plain_text",\
+                        "text": "View",\
+                        "emoji": true\
+                      },\
+                      "style": "primary",\
+                      "value": "approve"\
+                    },\
+                            {\
+                      "type": "button",\
+                      "text": {\
+                        "type": "plain_text",\
+                        "text": "Listen",\
+                        "emoji": true\
+                      },\
+                      "style": "primary",\
+                      "value": "approve"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "divider"\
+                },\
+                {\
+                  "type": "section",\
+                  "text": {\
+                    "type": "mrkdwn",\
+                    "text": "*Marti Valencia*\nStreaming Specialist"\
+                  },\
+                  "accessory": {\
+                    "type": "image",\
+                    "image_url": "https://capablefitness.files.wordpress.com/2016/01/scary-mugshot-man.jpg",\
+                    "alt_text": "CeeCee Bass"\
+                  }\
+                },\
+                {\
+                  "type": "context",\
+                  "elements": [\
+                    {\
+                      "type": "image",\
+                      "image_url": "https://gfmclearcomms.co.uk/wp-content/uploads/2017/09/Outbound-Call-Handling@2x.png",\
+                      "alt_text": "outbound"\
+                    },\
+                    {\
+                      "type": "plain_text",\
+                      "emoji": false,\
+                      "text": "Monday, 1m03s"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "actions",\
+                  "elements": [\
+                    {\
+                      "type": "button",\
+                      "text": {\
+                        "type": "plain_text",\
+                        "text": "Call",\
+                        "emoji": true\
+                      },\
+                      "style": "primary",\
+                      "value": "approve"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "divider"\
+                },\
+                {\
+                  "type": "section",\
+                  "text": {\
+                    "type": "mrkdwn",\
+                    "text": "*Pan He*\nBlock Kit newbie"\
+                  },\
+                  "accessory": {\
+                    "type": "image",\
+                    "image_url": "https://a.wattpad.com/cover/145435739-352-k903175.jpg",\
+                    "alt_text": "CeeCee Bass"\
+                  }\
+                },\
+                {\
+                  "type": "context",\
+                  "elements": [\
+                    {\
+                      "type": "image",\
+                      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Icons8_flat_missed_call.svg/1200px-Icons8_flat_missed_call.svg.png",\
+                      "alt_text": "outbound"\
+                    },\
+                    {\
+                      "type": "plain_text",\
+                      "emoji": false,\
+                      "text": "Monday, 1m03s"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "actions",\
+                  "elements": [\
+                    {\
+                      "type": "button",\
+                      "text": {\
+                        "type": "plain_text",\
+                        "text": "Call",\
+                        "emoji": true\
+                      },\
+                      "style": "primary",\
+                      "value": "approve"\
+                    }\
+                  ]\
+                },\
+                {\
+                  "type": "divider"\
+                }\
+              ]\
+            }';
+            res.json(payload);
             break;
           default:
             res.status(400);
+            
         }
         break;
       default:
