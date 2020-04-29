@@ -14,7 +14,7 @@ function setSlackHome(userId){
 
   try {
     // Use the `chat.postMessage` method to send a message from this app
-    const result = await slack.views.publish({
+    const result = slack.views.publish({
       user_id: userId,
       view: {
         "type": "home",
