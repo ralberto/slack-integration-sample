@@ -8,11 +8,12 @@ app.use(express.static('public'))
 
 app.post("/slack/v1/events", function(req, res) {
   
-    res.status(200);
+    
     var payload = {
         "challenge": req.body.body.challenge
     }
     res.json(payload);
+    res.status(200).send('OK');
     console.log("=========================================================")
     console.log("Request: %s",req.body.body)
     console.log("=========================================================")
