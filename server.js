@@ -99,9 +99,9 @@ app.post("/slack/v1/events", function(req, res) {
         console.log("Event: event_callback");
         switch(req.body.event.type){
           case 'app_home_opened':
-            console.log("Event: event_callback==>app_home_opened for userId: %s",req.body.userId);
+            console.log("Event: event_callback==>app_home_opened for userId: %s",req.body.event.user);
             res.status(200);
-            setSlackHome(req.body.userId);
+            setSlackHome(req.body.event.user);
             break;
           default:
             res.status(400);
