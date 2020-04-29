@@ -10,25 +10,78 @@ async function setSlackHome(userId){
   // Create a new instance of the WebClient class with the token read from your environment variable
   const slack = new WebClient(slackToken);
   const currentTime = new Date().toTimeString();
-  
+  const prob = Math.floor(Math.random() * 10);
 
   try {
     // Use the `chat.postMessage` method to send a message from this app
-    const result = slack.views.publish({
-      user_id: userId,
-      view: {
+    const result;
+    
+    if(prob<5 ) {
+      result = slack.views.publish({
+        user_id: userId,
+        view: {
+            "type": "home",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": `*CeeCee Bass*\nProduct Manager @ ${  currentTime  }`
+                },
+                "accessory": {
+                  "type": "image",
+                  "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+                  "alt_text": "CeeCee Bass"
+                }
+              },
+              {
+                "type": "context",
+                "elements": [
+                  {
+                    "type": "image",
+                    "image_url": "https://www.yourccsteam.com/wp-content/uploads/2019/11/inbound.png",
+                    "alt_text": "Answered"
+                  },
+                  {
+                    "type": "plain_text",
+                    "emoji": false,
+                    "text": "Today 3:33 pm, 5m32s"
+                  }
+                ]
+              },
+              {
+                "type": "actions",
+                "elements": [
+                  {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Call",
+                      "emoji": true
+                    },
+                    "style": "primary",
+                    "value": "approve"
+                  }
+                ]
+              },
+              {
+                "type": "divider"
+              }
+            ]
+        }
+      });
+    }
+    else {
+      result = slack.views.publish({
+        user_id: userId,
+        view: {
         "type": "home",
         "blocks": [
           {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `*CeeCee Bass*\nProduct Manager @ ${  currentTime  }`
-            },
-            "accessory": {
-              "type": "image",
-              "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
-              "alt_text": "CeeCee Bass"
+              "text": `*Active call*\n4 participants @ ${  currentTime  }`
             }
           },
           {
@@ -36,13 +89,13 @@ async function setSlackHome(userId){
             "elements": [
               {
                 "type": "image",
-                "image_url": "https://www.yourccsteam.com/wp-content/uploads/2019/11/inbound.png",
+                "image_url": "https://gfmclearcomms.co.uk/wp-content/uploads/2017/09/Outbound-Call-Handling@2x.png",
                 "alt_text": "Answered"
               },
               {
                 "type": "plain_text",
                 "emoji": false,
-                "text": "Today 3:33 pm, 5m32s"
+                "text": "Started today, 3:33pm"
               }
             ]
           },
@@ -53,10 +106,120 @@ async function setSlackHome(userId){
                 "type": "button",
                 "text": {
                   "type": "plain_text",
-                  "text": "Call",
+                  "text": "Add participant",
                   "emoji": true
                 },
                 "style": "primary",
+                "value": "approve"
+              },
+                      {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Disconnect",
+                  "emoji": true
+                },
+                "style": "danger",
+                "value": "approve"
+              },
+                      {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "End call",
+                  "emoji": true
+                },
+                "style": "danger",
+                "value": "approve"
+              }
+            ]
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*CeeCee Bass*\nProduct Manager"
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+              "alt_text": "CeeCee Bass"
+            }
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Disconnect",
+                  "emoji": true
+                },
+                "style": "danger",
+                "value": "approve"
+              }
+            ]
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*Marti Valencia*\nStreaming Specialist"
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://capablefitness.files.wordpress.com/2016/01/scary-mugshot-man.jpg",
+              "alt_text": "CeeCee Bass"
+            }
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Disconnect",
+                  "emoji": true
+                },
+                "style": "danger",
+                "value": "approve"
+              }
+            ]
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*Pan He*\nBlock Kit newbie"
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://a.wattpad.com/cover/145435739-352-k903175.jpg",
+              "alt_text": "CeeCee Bass"
+            }
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Disconnect",
+                  "emoji": true
+                },
+                "style": "danger",
                 "value": "approve"
               }
             ]
@@ -65,11 +228,12 @@ async function setSlackHome(userId){
             "type": "divider"
           }
         ]
-      }
-    });
+        }
+      });
+    }
     console.log(result);
   }
-  catch (error) {
+    catch (error) {
     console.error(error);
   }
 
