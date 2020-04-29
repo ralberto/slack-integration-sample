@@ -1,9 +1,82 @@
+const { WebClient } = require('@slack/web-api');
+const slackToken = "xoxb-1078425763427-1090859023793-nchk5CjAb2RlPB2JsIWDIk8r";
+
 var express = require("express");
 var bodyParser = require('body-parser');
 var app = express();
 
-app.use(bodyParser.json());
 
+function setSlackHome(userId){
+  // Create a new instance of the WebClient class with the token read from your environment variable
+  const slack = new WebClient(slackToken);
+
+  
+
+  try {
+    // Use the `chat.postMessage` method to send a message from this app
+    const result = await slack.views.publish({
+      user_id: userId,
+      view: {
+        "type": "home",
+        "blocks": [
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*CeeCee Bass*\nProduct Manager"
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+              "alt_text": "CeeCee Bass"
+            }
+          },
+          {
+            "type": "context",
+            "elements": [
+              {
+                "type": "image",
+                "image_url": "https://www.yourccsteam.com/wp-content/uploads/2019/11/inbound.png",
+                "alt_text": "Answered"
+              },
+              {
+                "type": "plain_text",
+                "emoji": false,
+                "text": "Today 3:33 pm, 5m32s"
+              }
+            ]
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Call",
+                  "emoji": true
+                },
+                "style": "primary",
+                "value": "approve"
+              }
+            ]
+          },
+          {
+            "type": "divider"
+          }
+        ]
+      }
+    });
+    console.log(result);
+  }
+  catch (error) {
+    console.error(error);
+  }
+
+};
+
+
+app.use(bodyParser.json());
 app.use(express.static('public'))
 
 app.post("/slack/v1/events", function(req, res) {
@@ -28,7 +101,54 @@ app.post("/slack/v1/events", function(req, res) {
           case 'app_home_opened':
             console.log("Event: event_callback==>app_home_opened");
             res.status(200);
-            const payload = '{                \
+            setSlackHome(req.body.userId);
+            break;
+          default:
+            res.status(400);
+            
+        }
+        break;
+      default:
+        res.status(400);
+    } 
+
+    console.log("=========================================================");
+    
+});
+
+// set the port of our application
+// process.env.PORT lets the port be set by Heroku
+var port = process.env.PORT || 8080;
+
+var server = app.listen(port, function() {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log("Slack Integration sample app listening at http://%s:%s", host, port);
+});
+
+const currentTime = new Date().toTimeString();
+
+(async () => {
+
+  try {
+    // Use the `chat.postMessage` method to send a message from this app
+    await web.chat.postMessage({
+      channel: '#general',
+      text: `The current time is ${currentTime}`,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  console.log('Message posted!');
+})();
+
+
+
+
+/*
+'{                \
               "type": "home",                 \
               "blocks": [                     \
                 {\
@@ -232,29 +352,5 @@ app.post("/slack/v1/events", function(req, res) {
                   "type": "divider"\
                 }\
               ]\
-            }';
-            res.json(payload);
-            break;
-          default:
-            res.status(400);
-            
-        }
-        break;
-      default:
-        res.status(400);
-    } 
-
-    console.log("=========================================================");
-    
-});
-
-// set the port of our application
-// process.env.PORT lets the port be set by Heroku
-var port = process.env.PORT || 8080;
-
-var server = app.listen(port, function() {
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log("Slack Integration sample app listening at http://%s:%s", host, port);
-});
+            }'
+*/
