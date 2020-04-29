@@ -290,7 +290,7 @@ app.post("/slack/v1/actions", function(req, res) {
     
   res.status(200);
   console.log("**********************************************************");
-}
+});
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
