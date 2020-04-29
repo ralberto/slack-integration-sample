@@ -12,14 +12,12 @@ app.post("/slack/v1/events", function(req, res) {
     console.log("Request: %s",req.body);
     res.status(200);
     var payload = {
-        "challenge": req.body.body.challenge
+        "challenge": req.body.challenge
     }
     res.json(payload);
     
     console.log("=========================================================");
-    console.log("Request: %s",req.body.body);
-    console.log("=========================================================");
-    // console.log("Response: %s",res.json);
+    console.log("Response: %s",res.json());
 });
 
 // set the port of our application
