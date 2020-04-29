@@ -286,7 +286,7 @@ app.post("/slack/v1/actions", function(req, res) {
   console.log("**********************************************************");
   console.log("/slack/v1/actions");
   console.log("**********************************************************");
-  console.log("Request: %s",req.payload);
+  console.log("Request: %s",req);
     
   res.status(200);
   console.log("**********************************************************");
