@@ -13,7 +13,7 @@ app.post("/slack/v1/events", function(req, res) {
         "challenge": req.body.body.challenge
     }
     res.json(payload);
-    res.status(200).send('OK');
+    res.sendStatus(200);
     console.log("=========================================================")
     console.log("Request: %s",req.body.body)
     console.log("=========================================================")
