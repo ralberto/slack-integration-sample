@@ -13,9 +13,6 @@ app.post("/slack/v1/events", function(req, res) {
         "challenge": req.body.body.challenge
     }
     res.json(payload);
-    res.status(200);
-    res.contentType('application/json');
-
     console.log("Response: ",res)
 });
 
