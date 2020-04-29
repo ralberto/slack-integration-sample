@@ -14,7 +14,7 @@ async function setSlackHome(userId){
 
   try {
     // Use the `chat.postMessage` method to send a message from this app
-    const result="";
+    var result="";
     
     if(prob<5 ) {
       result = slack.views.publish({
@@ -246,6 +246,8 @@ app.use(express.static('public'))
 app.post("/slack/v1/events", function(req, res) {
   
     console.log("=========================================================");
+    console.log("/slack/v1/events");
+    console.log("=========================================================");
     console.log("Request: %s",req.body);
     
     res.status(200);
@@ -279,6 +281,16 @@ app.post("/slack/v1/events", function(req, res) {
     console.log("=========================================================");
     
 });
+
+app.post("/slack/v1/actions", function(req, res) {
+  console.log("**********************************************************");
+  console.log("/slack/v1/actions");
+  console.log("**********************************************************");
+  console.log("Request: %s",req.body);
+    
+  res.status(200);
+  console.log("**********************************************************");
+}
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
