@@ -10,15 +10,35 @@ app.post("/slack/v1/events", function(req, res) {
   
     console.log("=========================================================");
     console.log("Request: %s",req.body);
-    console.log("=========================================================");
-    res.status(200);
-    /*var payload = {
-        "challenge": req.body.challenge
-    }
-    res.json(payload);
     
+    res.status(200);
+    
+    switch (req.body.type){
+      case 'url_verification':
+        console.log("Event: url_verification");
+        var payload = {
+          "challenge": req.body.challenge
+        }
+        res.json(payload);
+        res.status(200);
+        break;
+      case 'event_callback':
+        console.log("Event: event_callback");
+        switch(req.body.event.type){
+          case 'app_home_opened':
+            console.log("Event: event_callback==>app_home_opened");
+            res.status(200);
+            break;
+          default:
+            res.status(400);
+        }
+        break;
+      default:
+        res.status(400);
+    } 
+
     console.log("=========================================================");
-    console.log("Response: %s",res.json());*/
+    
 });
 
 // set the port of our application
