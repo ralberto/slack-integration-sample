@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 
-function setSlackHome(userId){
+async function setSlackHome(userId){
   // Create a new instance of the WebClient class with the token read from your environment variable
   const slack = new WebClient(slackToken);
   const currentTime = new Date().toTimeString();
@@ -16,7 +16,7 @@ function setSlackHome(userId){
     // Use the `chat.postMessage` method to send a message from this app
     
     if(prob<5 ) {
-      let result = slack.views.publish({
+      let result = await slack.views.publish({
         user_id: userId,
         view: {
             "type": "home",
@@ -69,11 +69,11 @@ function setSlackHome(userId){
             ]
         }
       });
-      //await(result);
-      console.log(result);
+      
+      console.log("Result: %s",result);
     }
     else {
-      let result = slack.views.publish({
+      let result = await slack.views.publish({
         user_id: userId,
         view: {
         "type": "home",
@@ -231,8 +231,8 @@ function setSlackHome(userId){
         ]
         }
       });
-      //await(result);
-      console.log(result);
+      
+      console.log("Result: %s",result);
     }
     
   }
