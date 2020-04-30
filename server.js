@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 
-async function setSlackHome(userId){
+function setSlackHome(userId){
   // Create a new instance of the WebClient class with the token read from your environment variable
   const slack = new WebClient(slackToken);
   const currentTime = new Date().toTimeString();
@@ -14,10 +14,9 @@ async function setSlackHome(userId){
 
   try {
     // Use the `chat.postMessage` method to send a message from this app
-    var result="";
     
     if(prob<5 ) {
-      result = slack.views.publish({
+      let result = slack.views.publish({
         user_id: userId,
         view: {
             "type": "home",
@@ -268,11 +267,7 @@ app.post("/slack/v1/events", function(req, res) {
           case 'app_home_opened':
             console.log("Event: event_callback==>app_home_opened for userId: %s",req.body.event.user);
             res.status(200);
-            try {
-              await setSlackHome(req.body.event.user);
-            } catch (error) {
-              console.log(error);
-            }
+            setSlackHome(req.body.event.user);
             break;
           default:
             res.status(400);
@@ -306,6 +301,8 @@ var server = app.listen(port, function() {
 
   console.log("Slack Integration sample app listening at http://%s:%s", host, port);
 });
+
+
 
 /*
 '{                \
