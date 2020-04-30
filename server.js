@@ -291,7 +291,9 @@ app.post("/slack/v1/actions", function(req, res) {
   console.log("/slack/v1/actions");
   console.log("**********************************************************");
   console.log("Request: %s",req);
-    
+  console.log("Request.headers: %s",req.headers);
+  console.log("Request.headers: %s",req.body);
+  
   res.status(200);
   res.json({});
   console.log("**********************************************************");
