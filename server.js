@@ -69,9 +69,10 @@ function setSlackHome(userId){
             ]
         }
       });
+      //await(result);
     }
     else {
-      result = slack.views.publish({
+      let result = slack.views.publish({
         user_id: userId,
         view: {
         "type": "home",
@@ -229,8 +230,8 @@ function setSlackHome(userId){
         ]
         }
       });
+      //await(result);
     }
-    await(result);
     console.log(result);
   }
     catch (error) {
