@@ -263,6 +263,7 @@ app.post("/slack/v1/events", function(req, res) {
         }
         res.json(payload);
         res.status(200);
+        res.json({});
         break;
       case 'event_callback':
         console.log("Event: event_callback");
@@ -270,6 +271,7 @@ app.post("/slack/v1/events", function(req, res) {
           case 'app_home_opened':
             console.log("Event: event_callback==>app_home_opened for userId: %s",req.body.event.user);
             res.status(200);
+            res.json({});
             setSlackHome(req.body.event.user);
             break;
           default:
@@ -291,6 +293,7 @@ app.post("/slack/v1/actions", function(req, res) {
   console.log("Request: %s",req);
     
   res.status(200);
+  res.json({});
   console.log("**********************************************************");
 });
 
