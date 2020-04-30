@@ -267,11 +267,14 @@ app.post("/slack/v1/events", function(req, res) {
           case 'app_home_opened':
             console.log("Event: event_callback==>app_home_opened for userId: %s",req.body.event.user);
             res.status(200);
-            setSlackHome(req.body.event.user);
+            try {
+              await setSlackHome(req.body.event.user);
+            } catch (error) {
+              console.log(error);
+            }
             break;
           default:
             res.status(400);
-            
         }
         break;
       default:
