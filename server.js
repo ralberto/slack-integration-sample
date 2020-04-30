@@ -70,6 +70,7 @@ function setSlackHome(userId){
         }
       });
       //await(result);
+      console.log(result);
     }
     else {
       let result = slack.views.publish({
@@ -231,8 +232,9 @@ function setSlackHome(userId){
         }
       });
       //await(result);
+      console.log(result);
     }
-    console.log(result);
+    
   }
     catch (error) {
     console.error(error);
