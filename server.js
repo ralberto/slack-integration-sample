@@ -231,6 +231,7 @@ async function setSlackHome(userId){
         }
       });
     }
+    await(result);
     console.log(result);
   }
     catch (error) {
