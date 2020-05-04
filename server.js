@@ -287,12 +287,12 @@ app.post("/slack/v1/events", function(req, res) {
 });
 
 app.post("/slack/v1/actions", function(req, res) {
-  const { token, trigger_id, user, actions, type } = JSON.parse(req.body.payload);
 
   console.log("**********************************************************");
   console.log("/slack/v1/actions");
   console.log("**********************************************************");
   console.log("Request: %s",req);
+  const { token, trigger_id, user, actions, type } = JSON.parse(req.body.payload);
   console.log("Request.token: %s",token);
   console.log("Request.trigger_id: %s",trigger_id);
   console.log("Request.user: %s",user);
