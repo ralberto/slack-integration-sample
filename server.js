@@ -287,13 +287,18 @@ app.post("/slack/v1/events", function(req, res) {
 });
 
 app.post("/slack/v1/actions", function(req, res) {
+  const { token, trigger_id, user, actions, type } = JSON.parse(req.body.payload);
+
   console.log("**********************************************************");
   console.log("/slack/v1/actions");
   console.log("**********************************************************");
   console.log("Request: %s",req);
-  console.log("Request.headers: %s",req.headers);
-  console.log("Request.headers: %s",req.body);
-  
+  console.log("Request.token: %s",token);
+  console.log("Request.trigger_id: %s",trigger_id);
+  console.log("Request.user: %s",user);
+  console.log("Request.actions: %s",actions);
+  console.log("Request.type: %s",type);
+
   res.status(200);
   res.json({});
   console.log("**********************************************************");
