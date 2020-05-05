@@ -122,6 +122,18 @@ app.action('end_call', async ({ body, ack, say }) => {
   //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
 });
 
+app.command('/tdp', async ({ command, ack, say }) => {
+  // Acknowledge command request
+  await ack();
+
+  console.log("=========================================================");
+  console.log("Received /tdp command");
+  console.log("Command: %s", command);
+  console.log("=========================================================");
+
+  await say(`You commanded me to ${command.text}`);
+});
+
 
 async function setSlackHome(event,context){
   // Create a new instance of the WebClient class with the token read from your environment variable
