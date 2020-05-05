@@ -139,7 +139,7 @@ app.command('/tdp', async ({ command, ack, say }) => {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": `*CeeCee Bass*\nProduct Manager @ ${  currentTime  }`
+              "text": `*CeeCee Bass*\nProduct Manager`
             },
             "accessory": {
               "type": "image",
