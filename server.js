@@ -187,6 +187,119 @@ app.command('/tdp', async ({ command, ack, say }) => {
           },
           {
             "type": "divider"
+          },
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*Marti Valencia*\nStreaming Specialist"
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://capablefitness.files.wordpress.com/2016/01/scary-mugshot-man.jpg",
+              "alt_text": "CeeCee Bass"
+            }
+          },
+          {
+            "type": "context",
+            "elements": [
+              {
+                "type": "image",
+                "image_url": "https://gfmclearcomms.co.uk/wp-content/uploads/2017/09/Outbound-Call-Handling@2x.png",
+                "alt_text": "outbound"
+              },
+              {
+                "type": "plain_text",
+                "emoji": false,
+                "text": "Monday, 1m03s"
+              }
+            ]
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Call",
+                  "emoji": true
+                },
+                "style": "primary",
+                "value": "Marti Valencia",
+                "action_id": "call"
+              }
+            ]
+          },
+          {
+            "type": "divider"
+          },
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "*CeeCee Bass*\nProduct Manager"
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+              "alt_text": "CeeCee Bass"
+            }
+          },
+          {
+            "type": "context",
+            "elements": [
+              {
+                "type": "image",
+                "image_url": "https://png.pngtree.com/svg/20170711/voicemail_384820.png",
+                "alt_text": "Answered"
+              },
+              {
+                "type": "plain_text",
+                "emoji": false,
+                "text": "Yesterday, 2m15s"
+              }
+            ]
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Call",
+                  "emoji": true
+                },
+                "style": "primary",
+                "value": "CeeCee Bass",
+                "action_id": "call"
+              },
+                      {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Read",
+                  "emoji": true
+                },
+                "style": "primary",
+                "value": "CeeCee Bass",
+                "action_id": "read_voicemail"
+              },
+                      {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Listen",
+                  "emoji": true
+                },
+                "value": "CeeCee Bass",
+                "action_id": "listen_voicemail"
+              }
+            ]
+          },
+          {
+            "type": "divider"
           }
         ]
       });
@@ -196,8 +309,64 @@ app.command('/tdp', async ({ command, ack, say }) => {
 
       break;
     case 'missed':
-      
-      break;
+        let result = await say({
+          "blocks": [
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": `*You missed these calls*\n`
+              }
+            },
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": `*CeeCee Bass*\nProduct Manager`
+              },
+              "accessory": {
+                "type": "image",
+                "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+                "alt_text": "CeeCee Bass"
+              }
+            },
+            {
+              "type": "context",
+              "elements": [
+                {
+                  "type": "image",
+                  "image_url": "https://www.yourccsteam.com/wp-content/uploads/2019/11/inbound.png",
+                  "alt_text": "Answered"
+                },
+                {
+                  "type": "plain_text",
+                  "emoji": false,
+                  "text": "Today 4:55 pm"
+                }
+              ]
+            },
+            {
+              "type": "actions",
+              "elements": [
+                {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Call",
+                    "emoji": true
+                  },
+                  "style": "primary",
+                  "value": "CeeCee Bass",
+                  "action_id": "call"
+                }
+              ]
+            },
+            {
+              "type": "divider"
+            }
+          ]
+        });
+        break;
     case '':
 
       break;
