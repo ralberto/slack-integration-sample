@@ -4,7 +4,7 @@ const { App }           = require('@slack/bolt');
 
 const app = new App({
   token: slackToken,
-  signingSecret: slackSignSecret;
+  signingSecret: slackSignSecret
 });
 
 
