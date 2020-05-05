@@ -104,7 +104,6 @@ app.action('add_participant', async ({ body, ack, say }) => {
   console.log("Actions: %s", body.actions.value);
   console.log("=========================================================");
   
-  
   //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
 });
 
@@ -196,7 +195,7 @@ app.action('read_voicemail', async ({ body, ack, context }) => {
 });
 
 
-app.command('/tdp', async ({ command, ack, say }) => {
+app.command('/tdp', async ({ command, ack, say, context }) => {
   // Acknowledge command request
   await ack();
   var result;
@@ -442,8 +441,75 @@ app.command('/tdp', async ({ command, ack, say }) => {
       });
       break;
     
-    case '':
-
+    case 'ongoing':
+      result = await app.client.views.open({
+        token: context.botToken,
+        // Pass a valid trigger_id within 3 seconds of receiving it
+        trigger_id: body.trigger_id,
+        // View payload
+        view: {
+          type: 'modal',
+          // View identifier
+          callback_id: 'view_1',
+          "title": {
+            "type": "plain_text",
+            "text": "Talkdesk Phone",
+            "emoji": true
+          },
+          "blocks": [
+            {
+              "type": "image",
+              "title": {
+                "type": "plain_text",
+                "text": " ",
+                "emoji": true
+              },
+              "image_url": "https://cdn.iconscout.com/icon/free/png-256/incoming-call-1-474994.png",
+                    "alt_text": " "
+            },
+            {
+              "type": "divider"
+            },
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "*<fakeLink.toUserProfiles.com|CeeCee Bass>*\nProduct Manager\n"
+              },
+              "accessory": {
+                "type": "image",
+                "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+                "alt_text": "CeeCee Bass"
+              }
+            },
+            {
+              "type": "actions",
+              "elements": [
+                {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "emoji": true,
+                    "text": "Answer"
+                  },
+                  "style": "primary",
+                  "value": "click_me_123"
+                },
+                {
+                  "type": "button",
+                  "text": {
+                    "type": "plain_text",
+                    "emoji": true,
+                    "text": "Reject"
+                  },
+                  "style": "danger",
+                  "value": "click_me_123"
+                }
+              ]
+            }
+          ]
+        }
+      });
       break;
     default:
       result = await say(`Sorry, don't know how to ${command.text}`);
