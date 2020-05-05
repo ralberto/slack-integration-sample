@@ -73,6 +73,7 @@ app.action('call', async ({ body, ack, say }) => {
   console.log("=========================================================");
   console.log("Clicked Call button");
   console.log("Body: %s", body);
+  console.log("Actions: %s", body.actions);
   console.log("=========================================================");
   
   
@@ -86,6 +87,7 @@ app.action('disconnect', async ({ body, ack, say }) => {
   console.log("=========================================================");
   console.log("Clicked Disconnect button");
   console.log("Body: %s", body);
+  console.log("Actions: %s", body.actions);
   console.log("=========================================================");
   
   
@@ -97,8 +99,9 @@ app.action('add_participant', async ({ body, ack, say }) => {
   await ack();
   
   console.log("=========================================================");
-  console.log("Clicked Call button");
+  console.log("Clicked Add Participant button");
   console.log("Body: %s", body);
+  console.log("Actions: %s", body.actions);
   console.log("=========================================================");
   
   
@@ -112,6 +115,7 @@ app.action('end_call', async ({ body, ack, say }) => {
   console.log("=========================================================");
   console.log("Clicked Call button");
   console.log("Body: %s", body);
+  console.log("Actions: %s", body.actions);
   console.log("=========================================================");
   
   
