@@ -195,7 +195,7 @@ app.action('read_voicemail', async ({ body, ack, context }) => {
 });
 
 
-app.command('/tdp', async ({ command, ack, say, context }) => {
+app.command('/tdp', async ({ command, ack, say, context,body }) => {
   // Acknowledge command request
   await ack();
   var result;
@@ -445,7 +445,7 @@ app.command('/tdp', async ({ command, ack, say, context }) => {
       result = await app.client.views.open({
         token: context.botToken,
         // Pass a valid trigger_id within 3 seconds of receiving it
-        trigger_id: " ", //body.trigger_id,
+        trigger_id: body.trigger_id,
         // View payload
         view: {
           type: 'modal',
