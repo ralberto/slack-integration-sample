@@ -155,38 +155,38 @@ app.action('read_voicemail', async ({ body, ack, context }) => {
       type: 'modal',
       // View identifier
       callback_id: 'view_1',
-      title: {
-        type: 'plain_text',
-        text: 'Modal title'
+      "title": {
+        "type": "plain_text",
+        "text": "Talkdesk Phone",
+        "emoji": true
       },
-      blocks: [
+      "blocks": [
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: 'Welcome to a modal with _blocks_'
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "*CeeCee Bass* Product Manager\nHi! I just wanted to check if you have had the time to go through the documents I sent you. I really need you input on that proposal - its due next monday, we are running out of time. Please ping me back!"
           },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Click me!'
-            },
-            action_id: 'button_abc'
+          "accessory": {
+            "type": "image",
+            "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+            "alt_text": "alt text for image"
           }
         },
         {
-          type: 'input',
-          block_id: 'input_c',
-          label: {
-            type: 'plain_text',
-            text: 'What are your hopes and dreams?'
-          },
-          element: {
-            type: 'plain_text_input',
-            action_id: 'dreamy_input',
-            multiline: true
-          }
+          "type": "context",
+          "elements": [
+            {
+              "type": "image",
+              "image_url": "https://png.pngtree.com/svg/20170711/voicemail_384820.png",
+              "alt_text": "Answered"
+            },
+            {
+              "type": "plain_text",
+              "emoji": false,
+              "text": "Today 4:55 pm"
+            }
+          ]
         }
       ],
       submit: {
