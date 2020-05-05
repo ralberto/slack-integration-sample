@@ -66,6 +66,58 @@ app.action('button_click', async ({ body, ack, say }) => {
   await say(`<@${body.user.id}> clicked the button`);
 });
 
+app.action('call', async ({ body, ack, say }) => {
+  // Acknowledge the action
+  await ack();
+  
+  console.log("=========================================================");
+  console.log("Clicked Call button");
+  console.log("Body: %s", body);
+  console.log("=========================================================");
+  
+  
+  //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
+});
+
+app.action('disconnect', async ({ body, ack, say }) => {
+  // Acknowledge the action
+  await ack();
+  
+  console.log("=========================================================");
+  console.log("Clicked Disconnect button");
+  console.log("Body: %s", body);
+  console.log("=========================================================");
+  
+  
+  //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
+});
+
+app.action('add_participant', async ({ body, ack, say }) => {
+  // Acknowledge the action
+  await ack();
+  
+  console.log("=========================================================");
+  console.log("Clicked Call button");
+  console.log("Body: %s", body);
+  console.log("=========================================================");
+  
+  
+  //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
+});
+
+app.action('end_call', async ({ body, ack, say }) => {
+  // Acknowledge the action
+  await ack();
+  
+  console.log("=========================================================");
+  console.log("Clicked Call button");
+  console.log("Body: %s", body);
+  console.log("=========================================================");
+  
+  
+  //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
+});
+
 
 async function setSlackHome(event,context){
   // Create a new instance of the WebClient class with the token read from your environment variable
@@ -120,7 +172,8 @@ async function setSlackHome(event,context){
                       "emoji": true
                     },
                     "style": "primary",
-                    "value": "approve"
+                    "value": "CeeCee Bass",
+                    "action_id": "call"
                   }
                 ]
               },
@@ -184,7 +237,9 @@ async function setSlackHome(event,context){
                   "emoji": true
                 },
                 "style": "danger",
-                "value": "approve"
+                "value": "approve",
+                "action_id": "disconnect"
+                
               },
                       {
                 "type": "button",
@@ -194,7 +249,8 @@ async function setSlackHome(event,context){
                   "emoji": true
                 },
                 "style": "danger",
-                "value": "approve"
+                "value": "approve",
+                "action_id": "end_call"
               }
             ]
           },
@@ -224,7 +280,8 @@ async function setSlackHome(event,context){
                   "emoji": true
                 },
                 "style": "danger",
-                "value": "approve"
+                "value": "CeeCee Bass",
+                "action_id": "disconnect"
               }
             ]
           },
@@ -254,7 +311,8 @@ async function setSlackHome(event,context){
                   "emoji": true
                 },
                 "style": "danger",
-                "value": "approve"
+                "value": "Marti Valencia",
+                "action_id": "disconnect"
               }
             ]
           },
@@ -284,7 +342,8 @@ async function setSlackHome(event,context){
                   "emoji": true
                 },
                 "style": "danger",
-                "value": "approve"
+                "value": "Pan He",
+                "action_id": "disconnect"
               }
             ]
           },
