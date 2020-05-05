@@ -134,59 +134,54 @@ app.command('/tdp', async ({ command, ack, say }) => {
   switch (command.text) {
     case 'recent':
       let result = await say({
-        token: context.botToken,
-        user_id: event.user,
-        view: {
-            "type": "home",
-            "blocks": [
+        "blocks": [
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": `*CeeCee Bass*\nProduct Manager @ ${  currentTime  }`
+            },
+            "accessory": {
+              "type": "image",
+              "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
+              "alt_text": "CeeCee Bass"
+            }
+          },
+          {
+            "type": "context",
+            "elements": [
               {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": `*CeeCee Bass*\nProduct Manager @ ${  currentTime  }`
-                },
-                "accessory": {
-                  "type": "image",
-                  "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
-                  "alt_text": "CeeCee Bass"
-                }
+                "type": "image",
+                "image_url": "https://www.yourccsteam.com/wp-content/uploads/2019/11/inbound.png",
+                "alt_text": "Answered"
               },
               {
-                "type": "context",
-                "elements": [
-                  {
-                    "type": "image",
-                    "image_url": "https://www.yourccsteam.com/wp-content/uploads/2019/11/inbound.png",
-                    "alt_text": "Answered"
-                  },
-                  {
-                    "type": "plain_text",
-                    "emoji": false,
-                    "text": "Today 3:33 pm, 5m32s"
-                  }
-                ]
-              },
-              {
-                "type": "actions",
-                "elements": [
-                  {
-                    "type": "button",
-                    "text": {
-                      "type": "plain_text",
-                      "text": "Call",
-                      "emoji": true
-                    },
-                    "style": "primary",
-                    "value": "CeeCee Bass",
-                    "action_id": "call"
-                  }
-                ]
-              },
-              {
-                "type": "divider"
+                "type": "plain_text",
+                "emoji": false,
+                "text": "Today 3:33 pm, 5m32s"
               }
             ]
-        }
+          },
+          {
+            "type": "actions",
+            "elements": [
+              {
+                "type": "button",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Call",
+                  "emoji": true
+                },
+                "style": "primary",
+                "value": "CeeCee Bass",
+                "action_id": "call"
+              }
+            ]
+          },
+          {
+            "type": "divider"
+          }
+        ]
       });
       break;
   
