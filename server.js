@@ -188,11 +188,7 @@ app.action('read_voicemail', async ({ body, ack, context }) => {
             }
           ]
         }
-      ],
-      submit: {
-        type: 'plain_text',
-        text: 'Submit'
-      }
+      ]
     }
   });
   
