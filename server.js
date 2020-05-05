@@ -512,7 +512,27 @@ app.command('/tdp', async ({ command, ack, say, context,body }) => {
       });
       break;
     default:
-      result = await say(`Sorry, don't know how to ${command.text}`);
+      result = await say({
+        "blocks": [
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "Hey there 👋 I'm Talkdesk Phone. I'm here to help you use TD Phone in Slack."
+            }
+          },
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": ">*`/tdp`* shows this help message\n>*`/tdp recent`* shows your recent calls and voice messages\n>*`/tdp missed`* shows the calls you missed\n>*`/tdp ongoing`* allows you to manage ongoing calls"
+            }
+          },
+          {
+            "type": "divider"
+          }
+        ]
+      });
       break;
   }
   
