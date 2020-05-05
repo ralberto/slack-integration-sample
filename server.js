@@ -125,7 +125,7 @@ app.action('end_call', async ({ body, ack, say }) => {
 app.command('/tdp', async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack();
-
+  var result;
   console.log("=========================================================");
   console.log("Received /tdp command");
   console.log("Command: %s", command);
@@ -133,7 +133,7 @@ app.command('/tdp', async ({ command, ack, say }) => {
 
   switch (command.text) {
     case 'recent':
-      let result = await say({
+      result = await say({
         "blocks": [
           {
             "type": "section",
@@ -309,7 +309,7 @@ app.command('/tdp', async ({ command, ack, say }) => {
 
       break;
     case 'missed':
-        let result = await say({
+        result = await say({
           "blocks": [
             {
               "type": "section",
