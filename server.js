@@ -309,7 +309,7 @@ app.command('/tdp', async ({ command, ack, say }) => {
 
       break;
     case 'missed':
-        result = await say({
+      result = await say({
           "blocks": [
             {
               "type": "section",
@@ -365,18 +365,71 @@ app.command('/tdp', async ({ command, ack, say }) => {
               "type": "divider"
             }
           ]
-        });
+      });
+      break;
+    case 'read_voicemail':
+      result = await app.client.views.open({
+        token: context.botToken,
+        // Pass a valid trigger_id within 3 seconds of receiving it
+        trigger_id: body.trigger_id,
+        // View payload
+        view: {
+          type: 'modal',
+          // View identifier
+          callback_id: 'view_1',
+          title: {
+            type: 'plain_text',
+            text: 'Modal title'
+          },
+          blocks: [
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: 'Welcome to a modal with _blocks_'
+              },
+              accessory: {
+                type: 'button',
+                text: {
+                  type: 'plain_text',
+                  text: 'Click me!'
+                },
+                action_id: 'button_abc'
+              }
+            },
+            {
+              type: 'input',
+              block_id: 'input_c',
+              label: {
+                type: 'plain_text',
+                text: 'What are your hopes and dreams?'
+              },
+              element: {
+                type: 'plain_text_input',
+                action_id: 'dreamy_input',
+                multiline: true
+              }
+            }
+          ],
+          submit: {
+            type: 'plain_text',
+            text: 'Submit'
+          }
+        }
+      });
+      break;
+    case 'listen_voicemail':
+
         break;
     case '':
 
       break;
     default:
-      await say(`Sorry, don't know how to ${command.text}`);
+      result = await say(`Sorry, don't know how to ${command.text}`);
       break;
   }
   
-
-
+console.log(result);
   
 });
 
