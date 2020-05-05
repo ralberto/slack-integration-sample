@@ -140,11 +140,6 @@ app.command('/tdp', async ({ command, ack, say }) => {
             "text": {
               "type": "mrkdwn",
               "text": `*These are your recent contacts made on Talkdesk Phone*\n`
-            },
-            "accessory": {
-              "type": "image",
-              "image_url": "https://i.pinimg.com/474x/fb/b5/b6/fbb5b6798f31538f2497e7ceb2b52674.jpg",
-              "alt_text": "CeeCee Bass"
             }
           },
           {
