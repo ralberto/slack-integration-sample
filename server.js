@@ -122,6 +122,84 @@ app.action('end_call', async ({ body, ack, say }) => {
   //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
 });
 
+app.action('listen_voicemail', async ({ body, ack, say }) => {
+  // Acknowledge the action
+  await ack();
+  
+  console.log("=========================================================");
+  console.log("Clicked Call button");
+  console.log("Body: %s", body);
+  console.log("Actions: %s", body.actions.value);
+  console.log("=========================================================");
+  
+  
+  //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
+});
+
+app.action('read_voicemail', async ({ body, ack, context }) => {
+  // Acknowledge the action
+  await ack();
+  
+  console.log("=========================================================");
+  console.log("Clicked Read Voicemail button");
+  console.log("Body: %s", body);
+  console.log("Actions: %s", body.actions.value);
+  console.log("=========================================================");
+  
+  result = await app.client.views.open({
+    token: context.botToken,
+    // Pass a valid trigger_id within 3 seconds of receiving it
+    trigger_id: body.trigger_id,
+    // View payload
+    view: {
+      type: 'modal',
+      // View identifier
+      callback_id: 'view_1',
+      title: {
+        type: 'plain_text',
+        text: 'Modal title'
+      },
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: 'Welcome to a modal with _blocks_'
+          },
+          accessory: {
+            type: 'button',
+            text: {
+              type: 'plain_text',
+              text: 'Click me!'
+            },
+            action_id: 'button_abc'
+          }
+        },
+        {
+          type: 'input',
+          block_id: 'input_c',
+          label: {
+            type: 'plain_text',
+            text: 'What are your hopes and dreams?'
+          },
+          element: {
+            type: 'plain_text_input',
+            action_id: 'dreamy_input',
+            multiline: true
+          }
+        }
+      ],
+      submit: {
+        type: 'plain_text',
+        text: 'Submit'
+      }
+    }
+  });
+  
+  //await say(`<@${body.user.id}> clicked the Call %s button`, body.value);
+});
+
+
 app.command('/tdp', async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack();
@@ -367,60 +445,7 @@ app.command('/tdp', async ({ command, ack, say }) => {
           ]
       });
       break;
-    case 'read_voicemail':
-      result = await app.client.views.open({
-        token: context.botToken,
-        // Pass a valid trigger_id within 3 seconds of receiving it
-        trigger_id: body.trigger_id,
-        // View payload
-        view: {
-          type: 'modal',
-          // View identifier
-          callback_id: 'view_1',
-          title: {
-            type: 'plain_text',
-            text: 'Modal title'
-          },
-          blocks: [
-            {
-              type: 'section',
-              text: {
-                type: 'mrkdwn',
-                text: 'Welcome to a modal with _blocks_'
-              },
-              accessory: {
-                type: 'button',
-                text: {
-                  type: 'plain_text',
-                  text: 'Click me!'
-                },
-                action_id: 'button_abc'
-              }
-            },
-            {
-              type: 'input',
-              block_id: 'input_c',
-              label: {
-                type: 'plain_text',
-                text: 'What are your hopes and dreams?'
-              },
-              element: {
-                type: 'plain_text_input',
-                action_id: 'dreamy_input',
-                multiline: true
-              }
-            }
-          ],
-          submit: {
-            type: 'plain_text',
-            text: 'Submit'
-          }
-        }
-      });
-      break;
-    case 'listen_voicemail':
-
-        break;
+    
     case '':
 
       break;
