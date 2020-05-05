@@ -77,7 +77,7 @@ async function setSlackHome(event,context){
     
     if(prob<5 ) {
       let result = await app.client.views.publish({
-        token: context.token,
+        token: context.botToken,
         user_id: event.userId,
         view: {
             "type": "home",
@@ -135,7 +135,7 @@ async function setSlackHome(event,context){
     }
     else {
       let result = await app.client.views.publish({
-        token: context.token,
+        token: context.botToken,
         user_id: event.userId,
         view: {
         "type": "home",
