@@ -53,7 +53,7 @@ app.event('app_home_opened',async ({ event, context }) => {
   console.log("=========================================================");
   console.log("Event: App Home Opened - %s", event);
   console.log("=========================================================");
-  setSlackHome(event.user.id);
+  setSlackHome(event,context);
 });
 
 
@@ -67,7 +67,7 @@ app.action('button_click', async ({ body, ack, say }) => {
 });
 
 
-async function setSlackHome(userId){
+async function setSlackHome(event,context){
   // Create a new instance of the WebClient class with the token read from your environment variable
   const currentTime = new Date().toTimeString();
   const prob = Math.floor(Math.random() * 10);
@@ -77,7 +77,8 @@ async function setSlackHome(userId){
     
     if(prob<5 ) {
       let result = await app.client.views.publish({
-        user_id: userId,
+        token: context.token,
+        user_id: event.userId,
         view: {
             "type": "home",
             "blocks": [
@@ -134,7 +135,8 @@ async function setSlackHome(userId){
     }
     else {
       let result = await app.client.views.publish({
-        user_id: userId,
+        token: context.token,
+        user_id: event.userId,
         view: {
         "type": "home",
         "blocks": [
